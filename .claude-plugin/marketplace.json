@@ -1,0 +1,18 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "mhogild-agents",
+  "description": "Magnus Hogild's personal Claude Code marketplace — the phase-gated agent team used across projects and machines.",
+  "owner": {
+    "name": "mhogild"
+  },
+  "plugins": [
+    {
+      "name": "agent-team",
+      "description": "Phase-gated delivery team: product-owner, tech-lead, coder, frontend-engineer, code-reviewer, verifier, solution-lead, retro — wired to a spec -> research -> plan -> build -> review -> checkpoint pipeline with human gates and context discipline.",
+      "author": { "name": "mhogild" },
+      "category": "workflow",
+      "source": "./plugins/agent-team",
+      "version": "1.0.0"
+    }
+  ]
+}
