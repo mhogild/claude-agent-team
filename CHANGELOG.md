@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.1 - 2026-08-27
+
+Docs only. Proves the update path: `claude plugin update` compares the declared
+**version**, not the commit sha - a push without a version bump is invisible to
+other machines.
+
 ## 1.0.0 — 2026-08-27
 
 Extracted the agent team from `mhogild/POS-all-in-one` into its own marketplace + plugin so it is
