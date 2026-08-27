@@ -12,7 +12,7 @@
       "author": { "name": "mhogild" },
       "category": "workflow",
       "source": "./plugins/agent-team",
-      "version": "1.0.1"
+      "version": "1.1.0"
     }
   ]
 }
