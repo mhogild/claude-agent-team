@@ -79,3 +79,5 @@ plugins/agent-team/
   templates/                         CLAUDE.md, settings.json
   WORKFLOW.md                        the workflow map (/agent-team:team-map)
 ```
+
+<!-- sync test 1787848148 -->
