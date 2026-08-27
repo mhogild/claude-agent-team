@@ -1,6 +1,7 @@
 # Agent team — workflow map
 
 **Owner:** solution-lead · **Updated:** 2026-08-15 · **Scope:** how to run this agent team.
+**Model:** Cagan / SVPG - empowered product team, four big risks, outcome over output.
 **Source of truth:** <https://github.com/mhogild/claude-agent-team> - never edit a copy inside a consuming repo.
 
 This is the one-page answer to *"which phase am I in, when do I open a fresh context window,
@@ -23,22 +24,35 @@ thousands of bad lines of code; a bad line of a plan, hundreds. So the human gat
 Know which level you're at before picking a command:
 
 - **Level 1 — product** (once): the whole product → `/agent-team:new-project` → `PROJECT.md` + `ROADMAP.md`.
-- **Level 2 — feature** (per roadmap item): the pipeline below, `/agent-team:spec` through `/agent-team:checkpoint`.
+- **Level 1.5 — strategy** (per milestone): `/agent-team:product-strategy` → focus, target persona,
+  business objectives with measurable key results.
+- **Level 2 — opportunity** (per roadmap item): the pipeline below, `/agent-team:discovery` through
+  `/agent-team:checkpoint`.
 - **Level 3 — build unit**: one coder's slice, assigned by tech-lead inside `/agent-team:build`.
 
-`/agent-team:spec` is per-feature, not per-product. No `ROADMAP.md` yet? Start with `/agent-team:new-project`.
+`/agent-team:spec` is per-opportunity, not per-product. No `ROADMAP.md` yet? Start with
+`/agent-team:new-project`.
+
+**The one idea behind the shape.** A team handed a list of features to build is a *feature team*,
+accountable for shipping. A team handed a problem to solve is an *empowered product team*,
+accountable for the result. Everything from `spec` rightward is delivery and was always strong here;
+`product-strategy` and `discovery` exist so the team is deciding what deserves to be built, and
+`checkpoint` closes the loop by asking whether it worked. Skip those and this is a very well-run
+feature factory.
 
 ## The pipeline
 
 | Phase | Command | Fresh window? | Reads (input) | Writes (output) | Human gate |
 |-------|---------|:---:|---------------|-----------------|:---:|
 | New project | `/agent-team:new-project` | yes | your product idea (once) | `PROJECT.md` + `ROADMAP.md` | ✅ sign off vision + roadmap |
-| Spec | `/agent-team:spec` | yes | a roadmap item | `.planning/<feature>/SPEC.md` (+ acceptance criteria, DoR) | ✅ approve spec |
+| Strategy | `/agent-team:product-strategy` | yes | `PROJECT.md` (per milestone) | `.planning/STRATEGY.md` (focus, persona, objectives + key results) | ✅ approve strategy |
+| Discovery | `/agent-team:discovery` | yes | `STRATEGY.md` + a candidate problem | `.planning/<opportunity>/DISCOVERY.md` (verdict: validated / killed / pivoted) | ✅ approve verdict |
+| Spec | `/agent-team:spec` | yes | a **validated** `DISCOVERY.md` | `.planning/<feature>/SPEC.md` (+ acceptance criteria, DoR) | ✅ approve spec |
 | Research | `/agent-team:research` | yes | `SPEC.md`, the codebase | `.planning/<feature>/RESEARCH.md` | ✅ review findings |
 | Plan | `/agent-team:plan` | yes | `SPEC.md` + `RESEARCH.md` | `.planning/<feature>/PLAN.md` (units, contracts, tasks) | ✅ approve plan |
 | Build | `/agent-team:build` | yes (per phase) | `PLAN.md` | code + atomic commits | — |
 | Review | `/agent-team:review` | yes | the build diff | REVIEW notes, verified smoke test, PR body | ✅ preview rendered artifact |
-| Checkpoint | `/agent-team:checkpoint` | no (end of phase) | git reality | updated ROADMAP / SUMMARY / README / diagrams | — |
+| Checkpoint | `/agent-team:checkpoint` | no (end of phase) | git reality + `DISCOVERY.md` predictions | `OUTCOME.md` (did the key result move?) + updated ROADMAP / SUMMARY / README / diagrams | — |
 | Retro | `/agent-team:retro` | yes | session transcript + commits | `TEAM-EVAL.md` entry (+ maybe a team-def fix) | ✅ approve any team-def change |
 
 Non-build work (conversation, config, strategy, planning-doc surgery) runs under `/agent-team:catchup`
@@ -61,7 +75,7 @@ Each phase skill states its own input/output up top, so you don't have to rememb
 | Role | Owns | File |
 |------|------|------|
 | orchestrator | the main session; routes phases, spawns subagents | — (main session) |
-| product-owner | the *what & why*: spec, acceptance criteria, backlog, Definition of Ready | `agents/product-owner.md` |
+| product-manager | the *what & why*: spec, acceptance criteria, backlog, Definition of Ready | `agents/product-manager.md` |
 | tech-lead | the *how*: decomposition into units, frozen contracts, integration-risk spikes, build gates | `agents/tech-lead.md` |
 | coder | one backend/logic unit in an isolated worktree, against a frozen contract | `agents/coder.md` |
 | frontend-engineer | one UI unit — design-system, accessibility, responsive discipline | `agents/frontend-engineer.md` |

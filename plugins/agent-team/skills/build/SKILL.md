@@ -14,7 +14,7 @@ and `dashboard/.planning/SESSION-2026-08-13.md`. See `README-PROVENANCE.md`.
 `build` is the **implement** phase — phase 4 of the pipeline in `${CLAUDE_PLUGIN_ROOT}/WORKFLOW.md` (or run `/agent-team:team-map`)
 (spec → research → plan → **build** → review → checkpoint). Do not start `build` on a feature
 whose PLAN.md hasn't been reviewed and whose Definition of Ready isn't met (see
-`agents/product-owner.md` and `agents/tech-lead.md`). Each build unit carries a `spec-ref` back to
+`agents/product-manager.md` and `agents/tech-lead.md`). Each build unit carries a `spec-ref` back to
 the acceptance criteria it satisfies, so review and verify can check the built thing against what
 was actually asked for.
 

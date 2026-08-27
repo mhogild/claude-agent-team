@@ -1,21 +1,28 @@
 ---
 name: spec
-description: 'Phase 1 — turn an idea into an approved SPEC with testable acceptance criteria before any research or code. Run by product-owner. Fresh context window.'
+description: 'Phase 2 - turn a validated opportunity into an approved SPEC with testable acceptance criteria and the outcome it must move, before any research or code. Run by product-manager. Fresh context window.'
 ---
 
 # spec
 
-**Fresh window.** Input: an idea / feature request. Output: `.planning/<feature>/SPEC.md`.
-Owner: `agents/product-owner.md`. First phase of the pipeline — see `${CLAUDE_PLUGIN_ROOT}/WORKFLOW.md` (or run `/agent-team:team-map`).
+**Fresh window.** Input: a **validated** `DISCOVERY.md` (or a written note saying why discovery was
+skipped). Output: `.planning/<feature>/SPEC.md`. Owner: `agents/product-manager.md`. Second phase — see `${CLAUDE_PLUGIN_ROOT}/WORKFLOW.md` (or run `/agent-team:team-map`).
 
 Spec-driven development is not outdated — it's how you agree on *what* before spending tokens on
 *how*. Community data on this pattern reports large drops in rework versus prompt-driven building.
 The spec is the source the plan's contracts and the verifier's checks both derive from.
 
+You are writing this **after** the idea survived `/agent-team:discovery`, so do not re-open whether
+to build it. Spec turns a validated opportunity into something buildable and checkable.
+
 ## Steps
 
-1. State the **problem and why now** in a few sentences. If you can't, ask the human — don't
-   invent a rationale to keep moving.
+0. **Trace the outcome.** Name the business objective and key result this serves, and link the
+   `DISCOVERY.md` verdict. If discovery was skipped, state why in one line (no value risk: bug fix,
+   compliance obligation, refactor, direct human request). A spec that cannot name the result it is
+   supposed to move is an output with no outcome — send it back to discovery.
+1. State the **problem and why now** in a few sentences, from the customer's side. If you can't,
+   ask the human — don't invent a rationale to keep moving.
 2. Write **acceptance criteria** as a numbered list, each one testable and observable in the
    rendered artifact. Write them the way the verifier will check them.
 3. Write **out of scope** — what this explicitly does not cover.
@@ -26,8 +33,10 @@ The spec is the source the plan's contracts and the verifier's checks both deriv
 
 ## Exit gate (Definition of Ready)
 
-Spec is approved · acceptance criteria are testable · out-of-scope stated · dependencies and
-named integration risks flagged. Only then does the feature move to `/agent-team:research`.
+Traces to an objective and key result · discovery verdict is *validated* (or the skip is justified
+in writing) · the four risks are each retired-with-evidence or explicitly-accepted-by-the-human ·
+spec approved · acceptance criteria testable · out-of-scope stated · dependencies and named
+integration risks flagged. Only then does the feature move to `/agent-team:research`.
 
 ## Keep it small
 

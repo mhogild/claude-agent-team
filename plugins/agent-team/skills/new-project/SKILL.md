@@ -1,12 +1,12 @@
 ---
 name: new-project
-description: 'Level 1 — define the whole product once and break it into a buildable roadmap. Produces PROJECT.md (vision, scope, constraints) and ROADMAP.md (ordered features), then hands each feature to /spec. Run by product-owner with tech-lead on architecture.'
+description: 'Level 1 — define the whole product once and break it into a buildable roadmap. Produces PROJECT.md (vision, scope, constraints) and ROADMAP.md (ordered features), then hands each feature to /spec. Run by product-manager with tech-lead on architecture.'
 ---
 
 # new-project
 
 **Fresh window.** Input: your product idea (a conversation). Output: `PROJECT.md` and `ROADMAP.md`
-at the repo root. Owner: `agents/product-owner.md`, with `agents/tech-lead.md` for the high-level
+at the repo root. Owner: `agents/product-manager.md`, with `agents/tech-lead.md` for the high-level
 architecture. This is the **top** of the pipeline — see `${CLAUDE_PLUGIN_ROOT}/WORKFLOW.md` (or run `/agent-team:team-map`).
 
 ## Where this sits
@@ -25,9 +25,21 @@ prevent. `/agent-team:spec` is per-feature; `/agent-team:new-project` is what fe
    now, the target users and their jobs, the must-have capabilities, explicit **non-goals**, and
    the hard constraints (compliance/regulatory, offline capability, target devices, tenancy, data
    residency — whatever is load-bearing for this product). Resolve load-bearing unknowns now — a cheap question beats a wrong roadmap.
-2. **Write `PROJECT.md`** — vision/problem, users, in-scope capabilities, non-goals, key
-   constraints, and high-level success criteria. High-signal, not a business plan. Get the human's
-   explicit sign-off; the roadmap derives from it.
+2. **Write `PROJECT.md`** — the **product vision** (the world you're trying to create, and the
+   customer problem it solves), the **primary target persona** named concretely, in-scope
+   capabilities, non-goals, key constraints, and high-level success criteria. High-signal, not a
+   business plan. Get the human's explicit sign-off; the roadmap derives from it.
+
+   State the problem before the solution. If `PROJECT.md` describes a system rather than a problem
+   somebody has, the roadmap under it will be a feature list with nothing to judge it against.
+
+   Optionally sketch a **Business Model Canvas** here — segments, value prop, channels, revenue,
+   costs — to check the thing hangs together commercially. **Timebox it to one sitting.** It's a
+   thinking aid, not a maintained artifact.
+2b. **Then set the first milestone's focus** with `/agent-team:product-strategy`, which turns the
+   vision into two or three business objectives with measurable key results. `ROADMAP.md` orders
+   *opportunities to pursue*, not features promised — anything on it still has to survive
+   `/agent-team:discovery` before it is specced.
 3. **Sketch the high-level architecture** with tech-lead — the major components and boundaries,
    enough to inform ordering (not a detailed design). Capture it as a Mermaid diagram seed for
    `docs/ARCHITECTURE.md` (see `skills/diagrams/SKILL.md`); solution-lead fleshes it out at the
@@ -42,4 +54,4 @@ prevent. `/agent-team:spec` is per-feature; `/agent-team:new-project` is what fe
 `PROJECT.md` is signed off, `ROADMAP.md` lists ordered features with the marker set. Then tell the
 human plainly: *"Project defined. Start a fresh session and run `/agent-team:spec` for the first roadmap item —
 `<name>`."* From here the per-feature loop owns delivery; solution-lead keeps ROADMAP.md true at
-each `/agent-team:checkpoint`, and product-owner re-runs this skill only for a new milestone or a pivot.
+each `/agent-team:checkpoint`, and product-manager re-runs this skill only for a new milestone or a pivot.

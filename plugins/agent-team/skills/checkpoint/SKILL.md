@@ -9,6 +9,24 @@ Input: git reality since the last checkpoint. Output: updated `ROADMAP.md` / pha
 `README.md` / diagrams. Owner: `agents/solution-lead.md`. Sixth phase — see `${CLAUDE_PLUGIN_ROOT}/WORKFLOW.md` (or run `/agent-team:team-map`).
 This one doesn't need a fresh window; it runs at the end of a phase's window.
 
+## Close the outcome loop first
+
+Before recording what shipped, record **whether it worked**. For each opportunity closed since the
+last checkpoint, append to its `.planning/<opportunity>/OUTCOME.md`:
+
+- The key result it predicted it would move, and the number predicted in `DISCOVERY.md`.
+- What the number actually did — or, honestly, **"not measured yet"** / **"cannot be measured"**.
+- The verdict: *moved it* · *didn't move it* · *too early to tell* · *never instrumented*.
+
+Shipping is not the finish line; the result is. A team that only ever records output slowly stops
+noticing that its output isn't producing outcomes. If a prediction missed badly, say so plainly and
+flag it for `/agent-team:retro` — a missed prediction is the most informative thing the team
+generates, and quietly dropping it is the single easiest way to become a feature factory with good
+paperwork.
+
+"Never instrumented" recurring across checkpoints is itself a finding: raise it with the human
+rather than logging it again.
+
 ## The standard every checkpoint is held to
 
 **A newcomer could resume from disk alone.** If `ROADMAP.md`'s "▶ you are here" marker, the phase

@@ -9,6 +9,21 @@ description: 'The self-correcting loop — after an episode, score it against ev
 `.planning/TEAM-EVAL.md` entry, and — sometimes — one logged edit to a team-definition file.
 Run by `agents/retro.md`. See `${CLAUDE_PLUGIN_ROOT}/WORKFLOW.md` (or run `/agent-team:team-map`). This replaces the former `team-review` skill.
 
+
+## Score the outcome, not only the process
+
+Before scoring how the episode ran, ask what it produced. Pull the `OUTCOME.md` entries closed since
+the last retro and check:
+
+- How many shipped opportunities **moved the key result they predicted**?
+- How many were **never instrumented**, so nobody can say?
+- How many discoveries ended in **killed** or **pivoted**? A team that never kills an idea is not
+  testing them — it is validating decisions already made, and its discovery phase is decoration.
+
+Persistent "shipped, never measured" or a kill rate of zero are patterns worth the one gated
+team-definition fix this skill allows — they mean the team has drifted back into being a delivery
+factory, which no amount of process scoring will surface.
+
 ## Step 1 — Locate evidence (before anything else)
 
 Find the transcript that actually covers the episode and **confirm its time span overlaps the

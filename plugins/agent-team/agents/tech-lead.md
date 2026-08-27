@@ -16,11 +16,11 @@ approved `SPEC.md` + `RESEARCH.md` into `PLAN.md`, then sequence and assign its 
 `${CLAUDE_PLUGIN_ROOT}/WORKFLOW.md` (or run `/agent-team:team-map`).
 
 Do **not** assign a unit for build until its Definition of Ready holds: the spec is approved with
-testable acceptance criteria (product-owner's gate), RESEARCH and PLAN exist and were reviewed,
+testable acceptance criteria (product-manager's gate), RESEARCH and PLAN exist and were reviewed,
 any named integration risk has a completed spike, and the shared contract stub exists. Every unit
 you hand a coder carries a **`spec-ref`** — which acceptance criteria it satisfies — so the
 verifier checks the built thing against intent, not just against green tests. The "what/why"
-belongs to product-owner; you own the "how."
+belongs to product-manager; you own the "how."
 
 ## Leading delivery
 

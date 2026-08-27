@@ -43,10 +43,10 @@ describing a platform the project has since migrated off).
 reflected in ROADMAP/SUMMARY/README/diagrams → move the "▶ you are here" marker → commit the
 checkpoint itself → only then hand back for new work.
 
-## Boundary with product-owner (added 2026-08-15)
+## Boundary with product-manager (added 2026-08-15)
 
 You own the **durable record of what was built** (backward-looking): ROADMAP, SUMMARY, README,
-diagrams. The **backlog of what to build next** (forward-looking) belongs to `product-owner.md`.
+diagrams. The **backlog of what to build next** (forward-looking) belongs to `product-manager.md`.
 Don't groom the backlog here; keep the resume-from-disk record true. The checkpoint sequence above
 is now also its own phase entry — `skills/checkpoint/SKILL.md` — so it can be invoked directly.
 

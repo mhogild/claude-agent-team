@@ -25,19 +25,21 @@ If there's no `ROADMAP.md` yet, the right first move is `/agent-team:new-project
 
 ## The pipeline
 
-`new-project → (per feature: spec → research → plan → build → review → checkpoint)`, plus `retro`
+`new-project → product-strategy → (per opportunity: discovery → spec → research → plan → build → review → checkpoint)`, plus `retro`
 and `catchup`. Each phase reads a defined input artifact and writes a defined output artifact; the
 artifact on disk is the handoff, not a kept-open window.
 
 | Phase | Command | Fresh window? | Writes |
 |-------|---------|:---:|--------|
 | new-project | `/agent-team:new-project` | yes | `PROJECT.md` + `ROADMAP.md` (once) |
+| strategy | `/agent-team:product-strategy` | yes | `.planning/STRATEGY.md` (per milestone) |
+| discovery | `/agent-team:discovery` | yes | `.planning/<opportunity>/DISCOVERY.md` (validated/killed) |
 | spec | `/agent-team:spec` | yes | `.planning/<feature>/SPEC.md` |
 | research | `/agent-team:research` | yes | `.planning/<feature>/RESEARCH.md` |
 | plan | `/agent-team:plan` | yes | `.planning/<feature>/PLAN.md` |
 | build | `/agent-team:build` | yes | code + atomic commits |
 | review | `/agent-team:review` | yes | review notes, smoke-test evidence, PR body |
-| checkpoint | `/agent-team:checkpoint` | no (ends the phase window) | ROADMAP / SUMMARY / README / diagrams |
+| checkpoint | `/agent-team:checkpoint` | no (ends the phase window) | `OUTCOME.md` + ROADMAP / SUMMARY / README / diagrams |
 | retro | `/agent-team:retro` | yes | `.planning/TEAM-EVAL.md` entry |
 
 ## Orchestrator protocol — guide the human at every phase boundary
@@ -57,8 +59,12 @@ recommend a fresh window** rather than pushing on in a degraded context.
 
 ## Standing gates (don't skip, even for small inline changes)
 
-- **Definition of Ready** before `/agent-team:build` touches a unit: spec approved with testable acceptance
-  criteria, RESEARCH + PLAN reviewed, integration-risk spikes done, contract stub landed.
+- **Definition of Ready** before `/agent-team:build` touches a unit: it traces to a business objective
+  and key result; the four risks (value, usability, feasibility, viability) are each retired with
+  evidence or explicitly accepted in writing; spec approved with testable acceptance criteria;
+  RESEARCH + PLAN reviewed; integration-risk spikes done; contract stub landed.
+- **Outcome over output.** Shipping is not the finish line — `/agent-team:checkpoint` records whether
+  the key result actually moved. "Shipped, never measured" recurring is a finding, not a footnote.
 - **Definition of Done**: independent code-review → real smoke test of the rendered artifact →
   human confirms the rendered artifact. If a gate can't run, present as **"review pending,"**
   never silently "done."

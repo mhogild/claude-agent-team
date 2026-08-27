@@ -1,5 +1,35 @@
 # Changelog
 
+## 1.2.0 - 2026-08-27
+
+Reshapes the team around Marty Cagan / SVPG: an empowered product team is handed a problem and is
+accountable for the outcome, not handed features and accountable for shipping. Everything from
+`spec` rightward was already strong delivery; what was missing was everything to its left, plus a
+loop back at the end.
+
+- **`product-owner` -> `product-manager`**, deliberately. "Product owner" is a Scrum backlog role
+  and a small subset of product management; the name was keeping the job small. Now owns value and
+  business viability and convenes all four risks.
+- **New `product-designer` agent** completes the product trio (PM = value/viability, designer =
+  usability, tech-lead = feasibility). Distinct from `frontend-engineer`, who builds the agreed
+  interface - the designer decides what it should be, via throwaway prototypes.
+- **New `/agent-team:product-strategy`** (Level 1.5, per milestone): focus and non-goals, insights,
+  one target persona, business objectives that are qualitative with key results that are
+  quantitative and business-level. Carries Cagan's own warning that OKRs are usually a waste and are
+  a cultural mismatch for feature teams - use lightly or not at all.
+- **New `/agent-team:discovery`** (Phase 1): opportunity assessment / customer letter framing,
+  ideation across several candidates, risk-appropriate prototyping, and testing the four big risks.
+  Ends in an explicit verdict - validated, killed, or pivoted. Killing ideas is the phase working.
+- **`spec` is now Phase 2**, downstream of a validated discovery, and must trace to an objective and
+  key result before it can be approved.
+- **`checkpoint` closes the loop**: writes `OUTCOME.md` recording whether the predicted key result
+  actually moved, including the honest "never instrumented".
+- **`retro` scores outcomes**, not just process - a zero kill rate or persistent "shipped, never
+  measured" is treated as evidence the team has drifted back into a feature factory.
+- `new-project` now leads with the product vision, a named target persona, and an optional
+  timeboxed Business Model Canvas.
+- SessionStart hook updated for the new pipeline and now injects the outcome-over-output rule.
+
 ## 1.1.0 - 2026-08-27
 
 Two behaviours that used to depend on a per-repo CLAUDE.md now travel with the plugin itself.
