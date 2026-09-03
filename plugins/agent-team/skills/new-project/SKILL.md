@@ -5,7 +5,8 @@ description: 'Level 1 — define the whole product once and break it into a buil
 
 # new-project
 
-**Fresh window.** Input: your product idea (a conversation). Output: `PROJECT.md` and `ROADMAP.md`
+**Runs in its own context.** Spawned as a subagent by the autonomous driver, or invoked directly.
+Input: your product idea (a conversation). Output: `PROJECT.md` and `ROADMAP.md`
 at the repo root. Owner: `agents/product-manager.md`, with `agents/tech-lead.md` for the high-level
 architecture. This is the **top** of the pipeline — see `${CLAUDE_PLUGIN_ROOT}/WORKFLOW.md` (or run `/agent-team:team-map`).
 
@@ -24,11 +25,15 @@ prevent. `/agent-team:spec` is per-feature; `/agent-team:new-project` is what fe
 1. **Interview the human** (this is context-gathering, so ask, don't assume): the problem and why
    now, the target users and their jobs, the must-have capabilities, explicit **non-goals**, and
    the hard constraints (compliance/regulatory, offline capability, target devices, tenancy, data
-   residency — whatever is load-bearing for this product). Resolve load-bearing unknowns now — a cheap question beats a wrong roadmap.
+   residency — whatever is load-bearing for this product). This step is the human's *input*, not a
+   gate: if they aren't in the loop, take the brief you were given, resolve load-bearing unknowns
+   with a cheap probe, and record the rest as stated assumptions in `PROJECT.md`
+   (`ESCALATION.md` §2–§3) rather than stalling.
 2. **Write `PROJECT.md`** — the **product vision** (the world you're trying to create, and the
    customer problem it solves), the **primary target persona** named concretely, in-scope
    capabilities, non-goals, key constraints, and high-level success criteria. High-signal, not a
-   business plan. Get the human's explicit sign-off; the roadmap derives from it.
+   business plan. Assert it yourself and move — the roadmap derives from it, and a vision waiting
+   for a signature is a project not started (`ESCALATION.md` §2).
 
    State the problem before the solution. If `PROJECT.md` describes a system rather than a problem
    somebody has, the roadmap under it will be a feature list with nothing to judge it against.
@@ -51,7 +56,9 @@ prevent. `/agent-team:spec` is per-feature; `/agent-team:new-project` is what fe
 
 ## Exit gate & handoff
 
-`PROJECT.md` is signed off, `ROADMAP.md` lists ordered features with the marker set. Then tell the
-human plainly: *"Project defined. Start a fresh session and run `/agent-team:spec` for the first roadmap item —
-`<name>`."* From here the per-feature loop owns delivery; solution-lead keeps ROADMAP.md true at
-each `/agent-team:checkpoint`, and product-manager re-runs this skill only for a new milestone or a pivot.
+`PROJECT.md` is written and asserted, `ROADMAP.md` lists ordered features with the marker set.
+Then **spawn a fresh-context subagent for the first roadmap item and continue** — do not stop and
+ask the human to start a new session (`ESCALATION.md` §5). Say plainly what you handed off:
+*"Project defined. Handing `<name>` to `/agent-team:spec` in a fresh context."* From here the
+per-feature loop owns delivery; solution-lead keeps ROADMAP.md true at each
+`/agent-team:checkpoint`, and product-manager re-runs this skill only for a new milestone or a pivot.

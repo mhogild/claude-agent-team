@@ -17,6 +17,12 @@ this rubric.
 > independent scoped diff review before the human preview, including changes authored by the
 > orchestrator."*
 
+This rubric is now the **last** check before the record, not the second-to-last: the human no
+longer approves the artifact (`ESCALATION.md` §2), and the orchestrator exception was already this
+team's most recurring process failure. Anything identity, auth, permissions or secrets-shaped that
+turns up in a diff is an `ESCALATION.md` §1 stop (S-1/S-2), not a review comment — flag it and
+halt that unit.
+
 **[attested]** Specific instance of this that's worth checking by name: for any
 adoption/coverage/utilization-style ratio, verify the denominator is the real eligible/assigned
 population, not merely users/events observed active in the period. This exact bug (a distinct-

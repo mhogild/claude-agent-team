@@ -1,7 +1,7 @@
 {
   "name": "agent-team",
-  "version": "1.2.0",
-  "description": "Phase-gated delivery team: 8 agents and a spec -> research -> plan -> build -> review -> checkpoint pipeline with human gates and context discipline.",
+  "version": "2.0.0",
+  "description": "Autonomous product team: 9 agents driving discovery -> spec -> research -> plan -> build -> review -> checkpoint unattended. Decides for itself and stops only for security, secrets, production, irreversible actions, legal interpretation, or abuse.",
   "author": { "name": "mhogild" },
   "homepage": "https://github.com/mhogild/claude-agent-team",
   "keywords": ["workflow", "agents", "orchestration", "planning"]

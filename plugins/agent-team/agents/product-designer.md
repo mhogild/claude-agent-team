@@ -43,6 +43,12 @@ Test the prototype with a real user who is **not** on this team and has not seen
 human can supply or role-play one, but say plainly which it was, because a role-played user is
 weak evidence and must be recorded as such.
 
+If no user is available, **do not stall the run waiting for one** (`ESCALATION.md` §2). Use the best
+proxy you have, label the evidence honestly for what it is, and log the residual usability risk in
+`.planning/DECISIONS.md` as an explicitly accepted risk with low confidence — so it reaches the
+human in the end-of-run batch rather than as an interruption. Weak evidence recorded as weak is
+usable. Weak evidence recorded as strong is the failure this whole role exists to prevent.
+
 Watch what they do, not what they say. Give them a task, not a tour. Say nothing while they
 struggle — the struggle *is* the finding. Record: what they were asked to do, where they hesitated
 or went wrong, what they said afterwards, and what you changed as a result.

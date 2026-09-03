@@ -16,14 +16,20 @@ identity/auth. Unit tests passing is necessary, not sufficient — a 403 admin-i
 a human's live sign-in once specifically because this step was skipped and only unit tests had
 run.
 
-**[attested]** A "PROVEN end-to-end" or "done" marker requires the human's confirmation of the
-**rendered artifact itself** — not a curated-data write, not a green test suite. Twice, "PROVEN
-end-to-end" was declared and committed before the human had actually loaded the result and found
-it materially wrong (empty dashboard; wrong leadership number). The gate exists to make that
-sequencing impossible: verify the rendered thing, *then* declare done, never the reverse.
+**[attested]** A "PROVEN end-to-end" or "done" marker requires the **verifier's** confirmation of
+the **rendered artifact itself** — the verifier loading the real thing, not a curated-data write,
+not a green test suite. Twice, "PROVEN end-to-end" was declared and committed before anyone had
+actually loaded the result and found it materially wrong (empty dashboard; wrong leadership
+number). The gate exists to make that sequencing impossible: verify the rendered thing, *then*
+declare done, never the reverse.
+
+The human used to be the one who loaded it. They no longer are (`ESCALATION.md` §2), so this gate
+is the whole of the protection that used to be shared — **it binds harder, not softer**
+(`ESCALATION.md` §6).
 
 ## If you can't run it
 
 **[attested]** A blocked verify step (usage limit, no environment access) is not license to
 promote the unit to done anyway. Hold it as "review pending," explicit and visible, or narrow to
-a scoped diff-only check of just the new surface.
+a scoped diff-only check of just the new surface. "Review pending" is a real state that survives
+into the end-of-run report — never a silent "done."

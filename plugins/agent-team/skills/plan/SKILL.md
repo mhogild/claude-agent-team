@@ -1,19 +1,20 @@
 ---
 name: plan
-description: 'Phase 3 — turn SPEC + RESEARCH into a precise PLAN with build units, frozen contracts, and verification steps. Run by tech-lead. Fresh context window; the second human gate.'
+description: 'Phase 3 — turn SPEC + RESEARCH into a precise PLAN with build units, frozen contracts, and verification steps. Run by tech-lead. Runs in its own context; the second high-leverage gate.'
 ---
 
 # plan
 
-**Fresh window.** Input: `SPEC.md` + `RESEARCH.md`. Output: `.planning/<feature>/PLAN.md`.
+**Runs in its own context.** Spawned as a subagent by the autonomous driver, or invoked directly.
+Input: `SPEC.md` + `RESEARCH.md`. Output: `.planning/<feature>/PLAN.md`.
 Owner: `agents/tech-lead.md`. Third phase — see `${CLAUDE_PLUGIN_ROOT}/WORKFLOW.md` (or run `/agent-team:team-map`).
 
 ## Why precision here pays off most
 
 A bad line of a plan can cause hundreds of bad lines of code. This is the second high-leverage
-human gate. The plan is where intent (SPEC) and facts (RESEARCH) become an executable, verifiable
-decomposition. Aim for a tight plan a reviewer can evaluate cold — a 200-line plan beats a
-2000-line surprise PR.
+gate — now a reviewer's, not a human's (`ESCALATION.md` §2). The plan is where intent (SPEC) and
+facts (RESEARCH) become an executable, verifiable decomposition. Aim for a tight plan a reviewer
+can evaluate cold — a 200-line plan beats a 2000-line surprise PR.
 
 ## The plan contains
 
@@ -31,5 +32,8 @@ decomposition. Aim for a tight plan a reviewer can evaluate cold — a 200-line 
 
 ## Exit gate
 
-PLAN.md exists, every unit carries a spec-ref and a contract, spikes are sequenced ahead of their
-dependents, and the human has approved the plan. Only an approved plan proceeds to `/agent-team:build`.
+PLAN.md exists, every unit carries a spec-ref and a contract, and spikes are sequenced ahead of
+their dependents. tech-lead asserts this gate and proceeds; the reviewer verifies the assertion.
+**Contract-foundation-first and spikes-ahead-of-dependents are not negotiable** — they are
+agent-to-agent gates, and they bind harder now that no human approval sits behind them
+(`ESCALATION.md` §6). Only a plan meeting them proceeds to `/agent-team:build`.

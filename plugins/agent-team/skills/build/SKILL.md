@@ -10,7 +10,8 @@ and `dashboard/.planning/SESSION-2026-08-13.md`. See `README-PROVENANCE.md`.
 
 ## Place in the pipeline (added 2026-08-15)
 
-**Fresh window.** Input: an approved `.planning/<feature>/PLAN.md`. Output: code + atomic commits.
+**Runs in its own context.** Spawned as a subagent by the autonomous driver, or invoked directly.
+Input: a reviewed `.planning/<feature>/PLAN.md`. Output: code + atomic commits.
 `build` is the **implement** phase — phase 4 of the pipeline in `${CLAUDE_PLUGIN_ROOT}/WORKFLOW.md` (or run `/agent-team:team-map`)
 (spec → research → plan → **build** → review → checkpoint). Do not start `build` on a feature
 whose PLAN.md hasn't been reviewed and whose Definition of Ready isn't met (see
@@ -26,8 +27,11 @@ blocker" and carry it forward unresolved — that pessimistic-default move cost 
 once when stale planning docs drove wrong provisioning steps, and once when a flagged
 RBAC-access contradiction was logged, marked not-a-blocker, and the team spent ~2 hours building
 against the pessimistic assumption before a single 30-second probe (`az account show`) proved it
-wrong. **Ask the human, or run a cheap read-only empirical probe, before scope locks — every
-time a `.planning` contradiction would change the build.**
+wrong. **Run a cheap read-only empirical probe before scope locks — every time a `.planning`
+contradiction would change the build.** Probe first, always: the probe settles the question in
+seconds and the answer is a fact rather than a recollection. Ask the human only when no probe is
+possible *and* the question is an `ESCALATION.md` §1 case; otherwise pick the most defensible
+reading, state it in the artifact, and log it per `ESCALATION.md` §3.
 
 ## §Contract-foundation-first
 
@@ -45,13 +49,19 @@ predicted shared-test files, resolved as a union, with zero production-file conf
    recurring process failure across episodes (3 separate occurrences before it was fixed).
 2. A verifier has actually run — a real smoke test of the deployed/rendered result, not a re-read
    of unit tests. See `verifier.md`.
-3. If either gate can't run right now (usage limit, session end), the unit is presented to the
-   human as **"review pending"**, explicitly — never silently promoted to done.
+3. If either gate can't run right now (usage limit, session end), the unit is recorded as
+   **"review pending"**, explicitly — never silently promoted to done.
 
-**[attested]** A "done"/"PROVEN end-to-end" marker specifically requires the **human's
+These two gates are **agent-to-agent and non-negotiable**, and they matter more now that the human
+is not the backstop — see `ESCALATION.md` §6.
+
+**[attested]** A "done"/"PROVEN end-to-end" marker specifically requires the **verifier's
 confirmation of the rendered artifact** — not a passing test suite, not a successful data write.
 This was violated twice, each time with the human discovering the real state (a blank dashboard,
-a wrong number) themselves, after "done" had already been declared.
+a wrong number) themselves, after "done" had already been declared. The sequencing is the point:
+verify the rendered thing, *then* declare done, never the reverse. If the verifier genuinely
+cannot run it, the unit stays **"review pending"** — the standard does not drop because the human
+left the loop.
 
 ## §Retract-then-proceed (lines 39–43 in the original)
 
@@ -68,15 +78,18 @@ failure recurred because the session wasn't running `build`.
 ## Scope discipline
 
 **[attested]** A feature request or scope change raised mid-build does not get folded into the
-current unit's scope. Capture it in `BACKLOG.md` with its open design questions, confirm any
-ambiguous semantics with the human, and keep building the originally scoped unit. This pattern
-held cleanly across every episode it was tested.
+current unit's scope. Capture it in `BACKLOG.md` with its open design questions, settle any
+ambiguous semantics yourself — most defensible reading, stated in the artifact and logged per
+`ESCALATION.md` §3 — and keep building the originally scoped unit. This pattern held cleanly
+across every episode it was tested.
 
-## Dev/prod isolation
+## Dev/prod isolation — an `ESCALATION.md` §1 case (S-3)
 
-**[attested]** The human runs anything that touches production credentials or infrastructure
-directly (Azure/SWA provisioning, schema changes, `az` sign-in). When an agent must run a
-**read-only** call against production (e.g. confirming a real number the human explicitly asked
-to see), that still gets a one-line explicit confirmation first — *"this will hit prod read-only
-with your session — confirming"* — even under a direct, unambiguous instruction to proceed. Never
-assume permission silently, even when it would obviously be granted.
+**[attested]** This is not generic caution; it is the S-3 trigger (*production, money, or real
+people*) landing inside a build. The human runs anything that touches production credentials or
+infrastructure directly (Azure/SWA provisioning, schema changes, `az` sign-in). When an agent must
+run a **read-only** call against production (e.g. confirming a real number the human explicitly
+asked to see), that still gets a one-line explicit confirmation first — *"this will hit prod
+read-only with your session — confirming"* — even under a direct, unambiguous instruction to
+proceed. Never assume permission silently, even when it would obviously be granted. Autonomy stops
+here; keep every independent unit moving while it waits (`ESCALATION.md` §4).

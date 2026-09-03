@@ -25,6 +25,13 @@ the rule never fired. **This rule applies here too, explicitly, regardless of wh
 nominally running.** Don't assume a lane-specific skill silently inherits every cross-cutting
 team rule — check.
 
+## §3 — `ESCALATION.md` applies here too
+
+**[inferred, by the same logic as §2]** `catchup` is the lane most likely to drift into asking the
+human, because it *is* the conversational lane — the human is right there. That is not a licence.
+`ESCALATION.md` outranks this skill as it outranks every other: stop for §1, decide everything
+else, log it per §3. A question that would be a failure of nerve in `build` is still one here.
+
 ## When to use catchup vs. build
 
 **[inferred]** Use `catchup` for work that doesn't produce build units to hand to a coder:

@@ -5,7 +5,8 @@ description: 'The self-correcting loop — after an episode, score it against ev
 
 # retro
 
-**Fresh window.** Input: the session transcript + the episode's commits. Output: a
+**Runs in its own context.** Spawned as a subagent by the autonomous driver, or invoked directly.
+Input: the session transcript + the episode's commits. Output: a
 `.planning/TEAM-EVAL.md` entry, and — sometimes — one logged edit to a team-definition file.
 Run by `agents/retro.md`. See `${CLAUDE_PLUGIN_ROOT}/WORKFLOW.md` (or run `/agent-team:team-map`). This replaces the former `team-review` skill.
 
@@ -44,7 +45,17 @@ no delegation, adapt the comms dimension explicitly rather than scoring it as a 
 
 Every finding is logged. A finding becomes an actual team-definition edit **only** when the same
 underlying issue has recurred **≥2×** across separate episodes, **and** the human explicitly
-approves. Collapse multiple overlapping one-off notes into a single graduated rule rather than
+approves.
+
+**This is the one approval gate `ESCALATION.md` leaves standing in a phase skill, and it is a
+deliberate exception to §2.** Editing `agents/*.md`, `skills/*/SKILL.md`, `WORKFLOW.md` or
+`ESCALATION.md` itself is **self-modification** — a different risk class from the product
+decisions §2 hands to the team. Everywhere else, a wrong call costs one revisable commit and the
+reviewer catches it; here, a wrong call edits the rules the reviewer reviews *by*, and it
+compounds silently across every future episode. Nothing downstream can catch it. Ask using the §4
+format, and keep scoring and logging while you wait — only the *edit* is gated, never the retro.
+
+Collapse multiple overlapping one-off notes into a single graduated rule rather than
 applying several redundant edits — the target file should get more precise over time, not longer.
 Every applied edit gets a dated `docs/team-changelog.md` entry (target file, exact addition, why).
 

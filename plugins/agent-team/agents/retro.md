@@ -45,7 +45,21 @@ A finding graduates to an actual edit **only** when the *same* underlying issue 
 **≥2×** across separate episodes (track this explicitly: "Recurring? compare against episode N").
 A single occurrence, however obvious the fix looks, is logged and left alone.
 
-Even after it graduates, apply nothing without the human's explicit OK. When you do apply:
+Even after it graduates, **apply nothing without the human's explicit OK.**
+
+This survives the 2.0.0 autonomy shift as a deliberate, named exception to `ESCALATION.md`, and it
+is worth being explicit about why, because the doctrine otherwise says decide. Editing a
+team-definition file is **self-modification**: it changes the rules every future run is judged by,
+including the rules that decide when to stop for the human. A bad code change is caught by the next
+review; a bad rule change edits the reviewer. It is also effectively irreversible in practice —
+nobody re-derives a deleted guardrail, they just stop having it — which puts it squarely in §1's
+S-4 spirit even though it touches no production system. The §1 asymmetry applies with full force
+here: the cost of a wrong self-edit compounds across every later run, the cost of asking is one
+question.
+
+So: the ≥2× recurrence bar **and** the human's OK, both, every time. Ask in the `ESCALATION.md` §4
+format — the human must be able to decide without reading the diff of the rule. Scoring (step 1) is
+never gated; only the edit is. When you do apply:
 - Make **one tight block** — a targeted addition to one named section of one file, not a rewrite.
 - Look for a **prune** in the same pass: retire a now-dead or superseded note the new rule
   subsumes, so the file gets more precise, not just longer.

@@ -50,6 +50,11 @@ If the user wants to *change* an agent or skill, the edit belongs in the source 
 installed copy under `~/.claude/plugins/cache/`, which is a version-pinned cache that is replaced on
 the next update.
 
+**Publishing a team change is gated twice over**, and neither gate is relaxed by the team being
+autonomous: editing a team-definition file is self-modification (`skills/retro/SKILL.md` §Step 3),
+and pushing it is `ESCALATION.md` §1 (S-4) — it lands on every machine that updates. Do the edit,
+the version bump and the validate freely; stop before the push.
+
 1. Edit in the `claude-agent-team` working tree.
 2. **Bump `version` in BOTH manifests** — `.claude-plugin/marketplace.json` and
    `plugins/agent-team/.claude-plugin/plugin.json`. They must agree.

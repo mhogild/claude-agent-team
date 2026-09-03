@@ -5,7 +5,8 @@ description: 'Level 1.5 - decide what the team will focus on and what result it 
 
 # product-strategy
 
-**Fresh window.** Input: `PROJECT.md` (vision) + whatever you know about the business.
+**Runs in its own context.** Spawned as a subagent by the autonomous driver, or invoked directly.
+Input: `PROJECT.md` (vision) + whatever you know about the business.
 Output: `.planning/STRATEGY.md`. Owner: `agents/product-manager.md`. Run once per milestone, not
 per feature.
 
@@ -52,10 +53,13 @@ feature.
      the objective is unmeasurable and say so in writing.
 
 6. **Business alignment.** State in one line, per objective, how it serves the business — revenue,
-   cost, risk, retention, or compliance. If you can't, escalate to the human before continuing.
+   cost, risk, retention, or compliance. If you can't write that line, the objective doesn't
+   belong in this milestone — cut it, and say in STRATEGY.md that you cut it and why.
 
-7. **Human approval.** STRATEGY.md is a human gate. It sets what the whole milestone is judged
-   against, so an unapproved strategy does not proceed to discovery.
+7. **Assert it and proceed.** STRATEGY.md is the team's to set — see `ESCALATION.md` §2. It sets
+   what the whole milestone is judged against, so state the assertion in the document, name the
+   reasoning behind the focus, and go to discovery. Objectives are revisable by a later
+   milestone; a strategy waiting for a signature is a milestone not started.
 
 ## An honest warning about OKRs
 
@@ -78,6 +82,7 @@ customer contact.
 
 ## Exit gate
 
-Focus named (and non-goals named) · target persona defined · each objective qualitative · each key
+Asserted by product-manager, verified by the reviewer — not waited on (`ESCALATION.md` §2). Focus
+named (and non-goals named) · target persona defined · each objective qualitative · each key
 result quantitative, business-level, and measurable with a stated instrument · business alignment
-stated · human approved.
+stated per objective.

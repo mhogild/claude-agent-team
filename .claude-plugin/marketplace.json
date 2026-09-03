@@ -8,11 +8,11 @@
   "plugins": [
     {
       "name": "agent-team",
-      "description": "Phase-gated delivery team: product-owner, tech-lead, coder, frontend-engineer, code-reviewer, verifier, solution-lead, retro — wired to a spec -> research -> plan -> build -> review -> checkpoint pipeline with human gates and context discipline.",
+      "description": "Autonomous product team: 9 agents driving discovery -> spec -> research -> plan -> build -> review -> checkpoint unattended. Decides for itself and stops only for security, secrets, production, irreversible actions, legal interpretation, or abuse.",
       "author": { "name": "mhogild" },
       "category": "workflow",
       "source": "./plugins/agent-team",
-      "version": "1.2.0"
+      "version": "2.0.0"
     }
   ]
 }

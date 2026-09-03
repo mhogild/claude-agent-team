@@ -7,7 +7,8 @@ description: 'Phase 6 — make the durable record match git reality so a newcome
 
 Input: git reality since the last checkpoint. Output: updated `ROADMAP.md` / phase `SUMMARY.md` /
 `README.md` / diagrams. Owner: `agents/solution-lead.md`. Sixth phase — see `${CLAUDE_PLUGIN_ROOT}/WORKFLOW.md` (or run `/agent-team:team-map`).
-This one doesn't need a fresh window; it runs at the end of a phase's window.
+This one doesn't need its own context; it runs at the end of the phase's, on the state that phase
+just produced.
 
 ## Close the outcome loop first
 
@@ -24,8 +25,10 @@ flag it for `/agent-team:retro` — a missed prediction is the most informative 
 generates, and quietly dropping it is the single easiest way to become a feature factory with good
 paperwork.
 
-"Never instrumented" recurring across checkpoints is itself a finding: raise it with the human
-rather than logging it again.
+"Never instrumented" recurring across checkpoints is itself a finding: escalate it to
+`/agent-team:retro` as a `[RECURRING ≥2×]` candidate and name it in the end-of-run report, rather
+than logging it again. That report is the human's review surface — a batch, after the fact, not an
+interruption during (`ESCALATION.md` §3).
 
 ## The standard every checkpoint is held to
 

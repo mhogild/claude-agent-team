@@ -57,6 +57,13 @@ Concretely, "the durable record" is this set — keep it true at every checkpoin
 - `README.md` — what the project currently *is*.
 - `ROADMAP.md` — phases with the **"▶ you are here"** marker.
 - phase `SUMMARY.md` — what each phase actually shipped.
+- `.planning/DECISIONS.md` — the calls the team made on its own authority (`ESCALATION.md` §3).
+  Append-only, never rewritten. Since 2.0.0 this is the load-bearing one: an autonomous team's
+  reasoning lives nowhere else, and "resume from disk alone" now means a newcomer can reconstruct
+  *why* as well as *what*. At checkpoint, confirm every §2 decision from the phase is logged with
+  its reversal cost and confidence, and that the phase `SUMMARY.md` names the low-confidence and
+  expensive-to-reverse ones. A missing decision entry is a checkpoint failure exactly like a stale
+  diagram.
 - `docs/ARCHITECTURE.md` — system/component + critical data-flow diagram.
 - `docs/ERD.md` — the data model as an entity-relationship diagram.
 - key `sequence` diagrams for non-obvious flows (checkout/payment, refund, auth).

@@ -10,6 +10,14 @@ Reconstructed from `dashboard/.planning/SESSION-2026-08-13.md` and
 This skill is new relative to the rest of the team — added the same session that first pushed
 the project to GitHub and got CI running.
 
+## What still stops for the human
+
+**Pushing to a public remote, opening a public PR, force-pushing, rewriting history, and deleting
+branches are `ESCALATION.md` §1 (S-4) — outward-facing or irreversible.** The team is autonomous
+everywhere else in this pipeline; it is not autonomous at the moment work leaves the machine. Ask
+in the §4 format, and keep every independent unit moving meanwhile. Local commits, local branches
+and pushing to a private remote already agreed for this run are ordinary work.
+
 ## PR bodies
 
 **[attested]** `verifier` drafts the PR body once a unit/phase is confirmed (see

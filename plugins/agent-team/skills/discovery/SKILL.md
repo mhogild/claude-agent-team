@@ -5,7 +5,8 @@ description: 'Phase 1 - frame one opportunity, generate solutions, prototype, an
 
 # discovery
 
-**Fresh window.** Input: `.planning/STRATEGY.md` + one candidate problem.
+**Runs in its own context.** Spawned as a subagent by the autonomous driver, or invoked directly.
+Input: `.planning/STRATEGY.md` + one candidate problem.
 Output: `.planning/<opportunity>/DISCOVERY.md`. Owner: `agents/product-manager.md`, with
 `agents/product-designer.md` (usability) and `agents/tech-lead.md` (feasibility) — the product trio.
 
@@ -88,8 +89,9 @@ one-line reason. What you may not do is leave one silently unexamined.
 
 `DISCOVERY.md` ends with an explicit verdict:
 
-- **Validated** — each of the four risks retired with stated evidence, or explicitly accepted by the
-  human in writing with a reason. Proceeds to `/agent-team:spec`.
+- **Validated** — each of the four risks retired with stated evidence, or explicitly accepted in
+  writing with a reason and a named owner from the trio. The verdict is the trio's to call and it
+  proceeds on its own (`ESCALATION.md` §2). Proceeds to `/agent-team:spec`.
 - **Killed** — say which risk killed it and what the evidence was. This is a success. Record it so
   the idea does not return in three months with no memory.
 - **Pivoted** — the problem is real, this solution isn't. Reframe and re-enter at step 1.
@@ -99,9 +101,10 @@ procrastination. Days, not weeks.
 
 ## Exit gate
 
-Opportunity assessment written and traced to an objective · more than one solution considered ·
-prototype built at a fidelity justified by risk · all four risks retired-with-evidence or
-explicitly-accepted-in-writing · verdict recorded · human approved.
+Asserted by the trio, verified by the reviewer — not waited on (`ESCALATION.md` §2). Opportunity
+assessment written and traced to an objective · more than one solution considered · prototype
+built at a fidelity justified by risk · all four risks retired-with-evidence or
+explicitly-accepted-in-writing with a named owner · verdict recorded.
 
 ## When to skip this
 

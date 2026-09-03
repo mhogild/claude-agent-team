@@ -1,5 +1,77 @@
 # Changelog
 
+## 2.0.0 - 2026-09-03
+
+**The team is now autonomous.** It drives its own pipeline, approves its own artifacts, and spawns
+its own fresh contexts. It stops for the human on security and almost nothing else.
+
+The 1.x team was well-gated and slow to run. In practice its human gates split cleanly in two: the
+**agent** gates (code review, verifier) caught real defects, while most **human** gates were rubber
+stamps that cost a session restart each. A single real build phase under 1.2.0 required three
+approval commits and four "start a new session" handoffs, and exactly one decision in it genuinely
+needed a person.
+
+### The rule
+
+> **Stop for security. Decide everything else.**
+
+- **New `ESCALATION.md`** — outranks every skill and agent definition. Defines the only six reasons
+  to stop: **S-1** security in substance · **S-2** secrets and credentials · **S-3** production,
+  money, or real people · **S-4** irreversible or outward-facing · **S-5** legal/regulatory
+  *interpretation* with liability · **S-6** phishing, deception, abuse-shaped work. Everything else
+  is decided and logged.
+- **New `/agent-team:autonomous`** — drives the whole roadmap unattended, item after item, spawning
+  each phase into its own context. Has a stated budget ceiling (default: one milestone or 3 items),
+  explicit stop conditions, and `.planning/RUN.md` state so a dead session resumes from disk.
+- **New `.planning/DECISIONS.md`** — append-only log of every judgement call that would once have
+  been escalated, with the alternative not taken, the reversal cost, and a confidence rating. The
+  end-of-run report names every low-confidence and expensive-to-reverse entry. **This is the human's
+  review surface: a batch, after the fact, not an interruption during.**
+
+### Approval gates removed
+
+`spec`, `research`, `plan`, `discovery`, `product-strategy`, `new-project` no longer wait for a
+human to approve their own output. Each phase asserts its exit gate; the reviewer verifies it.
+Twelve approval gates removed, each leaving an `ESCALATION.md` pointer where it stood.
+
+**Two stops kept, neither an approval.** `new-project` still *interviews* the human — the product
+idea is theirs to give, not their approval of the team's output — but it no longer blocks if they
+are absent. `retro` still gates team-definition edits: a team rewriting the rules that decide when
+it stops, unsupervised, is a distinct risk class.
+
+**Two stops added** (`ESCALATION.md` S-4): pushing to a public remote / opening a public PR
+(`github-flow`), and publishing a team-definition change that lands on every machine
+(`update-team`).
+
+### Fresh sessions replaced by fresh subagents
+
+The context discipline was right; the mechanism was manual. A phase still gets a clean window — it
+just gets one by **being a subagent** rather than by asking a person to restart. Nine phase-skill
+headers rewritten; input/output signatures preserved exactly, so the driver can consume them.
+`hooks/session-start.json` and `hooks/pre-compact.json` rewritten — the pre-compact hook now says
+checkpoint **and continue**, where it used to say stop.
+
+### Agent gates strengthened, because they are now the only backstop
+
+- `code-reviewer` gains the **§1 tripwire**: a diff touching auth, secrets, permissions, payments,
+  PII or anything outward-facing that did *not* stop is raised as a finding. §1 is now enforced by
+  an agent rather than by whoever is driving noticing.
+- The **verifier's** confirmation of the rendered artifact replaces the human's. The sequencing is
+  unchanged and does not bend: verify the rendered thing, *then* say done. "Review pending" still
+  applies when a gate genuinely cannot run.
+- **Definition of Ready** is asserted by `product-manager` and verified by **`tech-lead`** at
+  assignment. Deliberately *not* `code-reviewer`, which is diff-only by design — judging whether
+  four product risks carry real evidence is product judgement, and putting it on the diff reviewer
+  is how a gate becomes a rubber stamp.
+- `build` §Frame now says **probe first, always**; ask only when a probe is impossible *and* it is a
+  §1 case.
+
+### Breaking
+
+- Consuming repos should re-run `/agent-team:team-init` to pick up the rewritten `CLAUDE.md`
+  template, or the old fresh-window protocol will keep firing from their local copy.
+- Anything that relied on a human approval commit per phase will no longer see one.
+
 ## 1.2.0 - 2026-08-27
 
 Reshapes the team around Marty Cagan / SVPG: an empowered product team is handed a problem and is
